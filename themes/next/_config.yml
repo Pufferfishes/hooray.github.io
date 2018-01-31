@@ -346,7 +346,7 @@ font:
   headings:
     external: true
     family:
-    size:
+    size: 26
 
   # Font settings for posts.
   # Fallback to `global` font settings.
@@ -753,7 +753,7 @@ lazyload: true
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
-pace: false
+pace: true
 # Themes list:
 #pace-theme-big-counter
 #pace-theme-bounce
@@ -812,8 +812,8 @@ vendors:
 
   # Internal version: 2.1.5
   # See: http://fancyapps.com/fancybox/
-  fancybox: https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js
-  fancybox_css: https://cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css
+  fancybox: //cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js
+  fancybox_css: //cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css
 
   # Internal version: 1.0.6
   # See: https://github.com/ftlabs/fastclick
@@ -821,7 +821,7 @@ vendors:
 
   # Internal version: 1.9.7
   # See: https://github.com/tuupola/jquery_lazyload
-  lazyload: https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js
+  lazyload: //cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js
 
   # Internal version: 1.2.1
   # See: http://VelocityJS.org
@@ -849,8 +849,8 @@ vendors:
   # Or use direct links below:
   # pace: //cdn.bootcss.com/pace/1.0.2/pace.min.js
   # pace_css: //cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css
-  pace:
-  pace_css:
+  pace: //cdn.bootcss.com/pace/1.0.2/pace.min.js
+  pace_css: //cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css
 
   # Internal version: 1.0.0
   # https://github.com/hustcc/canvas-nest.js
