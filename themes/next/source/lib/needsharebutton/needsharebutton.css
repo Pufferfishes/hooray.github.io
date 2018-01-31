@@ -6,7 +6,7 @@
 ***********************************************/
 /* Social icons font
 ***********************************************/
-@import url('font-embedded.css');
+@import url('fontello-embedded.css');
 .need-share-button {
   position: relative;
 }
@@ -197,6 +197,9 @@
 .need-share-button_qqzone {
   color: #ffce00;
 }
+.need-share-button_qqzone:before {
+  content: '\f1d6';
+}
 .need-share-button_qqzone.need-share-button_link-box {
   color: #fff;
 
@@ -266,6 +269,14 @@
 
   background: #000;
 }
+.need-share-button_tapiture {
+  color: #30547d;
+}
+.need-share-button_tapiture.need-share-button_link-box {
+  color: #fff;
+
+  background: #30547d;
+}
 .need-share-button_stumbleupon {
   color: #f04e23;
 }
@@ -329,6 +340,14 @@
   color: #fff;
 
   background: #03652c;
+}
+.need-share-button_pingfm {
+  color: #94b5da;
+}
+.need-share-button_pingfm.need-share-button_link-box {
+  color: #fff;
+
+  background: #94b5da;
 }
 .need-share-button_evernote {
   color: #79d626;
