@@ -121,7 +121,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/01/31/5a712b5a2e28b.png">
 <meta property="og:image" content="https://i.loli.net/2018/01/31/5a712cef6dc85.png">
 <meta property="og:image" content="https://i.loli.net/2018/01/31/5a716e1494f32.png">
-<meta property="og:updated_time" content="2018-01-31T08:01:32.783Z">
+<meta property="og:updated_time" content="2018-01-31T08:42:34.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Hexo 和 Github 快速搭建个人博客">
 <meta name="twitter:description" content="网上类似的教程一搜一大把，写得其实很详细。但对于初次接触的我来说，这是一次全新的体验。所以在经历了多次「安装——配置——部署——删除——再安装——」之后，大概弄懂了整个流程。正好也是博客的开篇文章，记录一下整个搭建流程，加深印象。">
@@ -480,7 +480,8 @@
 <p>稍微等待一会，会提示发布成功，然后在浏览器里测试访问 <a href="https://hooray.github.io">https://hooray.github.io</a> ，大功告成！</p>
 <p><img src="https://i.loli.net/2018/01/31/5a712cef6dc85.png" alt=""></p>
 <p>这时候打开仓库会发现 Hexo 其实是把生成好的静态页面和相关资源上传到了 <code>master</code> 分支下，但是本地博客的开发环境是没有上传到仓库里的，如果换一台电脑想继续写博客更新，这就没办法。</p>
-<p>解决这个问题其实也很简单，你可以单独再创建一个仓库，专门用于上传开发环境，但我的做法是创建一个分支，比如 <code>develop</code> 分支，这个分支专门用来上传开发环境。</p>
+<p>解决这个问题其实也很简单，你可以单独再创建一个仓库，专门用于上传开发环境，但我的做法是创建一个分支，比如 <code>hexo</code> 分支，这个分支专门用来上传开发环境。</p>
+<div class="note warning"><p>需要注意，通过 git clone 下来的 next 主题，需要手动删除 .git 文件夹，不然 NexT 主题不会被提交。</p></div>
 <h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><h3 id="安装-NexT"><a href="#安装-NexT" class="headerlink" title="安装 NexT"></a>安装 <a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <div class="note info"><p>我安装的是 <code>6.0.x</code> 的 NexT ，但在 NexT 官网上提供的还是 <code>5.1.x</code> 的安装命令和文档，因为 <code>6.0.x</code> 和 <code>5.1.x</code> 的配置有所不同，建议第一次练习搭建还是使用 <code>5.1.x</code> ，熟悉配置文档后，再用 <code>6.0.x</code> 。</p></div>
 <p>修改 <code>_config.yml</code> 文件里 <code>theme</code> 配置：</p>
