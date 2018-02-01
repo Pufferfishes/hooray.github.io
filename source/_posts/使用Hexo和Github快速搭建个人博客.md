@@ -42,17 +42,7 @@ $ hexo init
 
 初始化完成后， `blog` 文件夹的目录如下：
 
-```
-.
-├── .gitignore
-├── _config.yml
-├── package.json
-├── yarn.lock
-├── scaffolds
-├── source
-|   └── _posts
-└── themes
-```
+![](https://i.loli.net/2018/02/01/5a72b7bf324c9.png)
 
 ### 本地访问
 
@@ -114,7 +104,7 @@ $ hexo clean
 <username>.github.io
 ```
 
-例如我的就是 `hooray.github.io` ，创建好后，复制仓库的 HTTPS 地址，打开 `blog` 根目录下的 `_config.yml` 文件，拖动到底部找到 `deploy` 配置，按照以下格式修改并保存：
+例如我的就是 `hooray.github.io` ，创建好后，复制仓库的 `HTTPS` 地址，打开 `blog` 根目录下的 `_config.yml` 文件，拖动到底部找到 `deploy` 配置，按照以下格式修改并保存：
 
 ```
 deploy:
@@ -142,12 +132,12 @@ $ hexo clean && hexo g && hexo d
 
 ![](https://i.loli.net/2018/01/31/5a712cef6dc85.png)
 
-这时候打开仓库会发现 Hexo 其实是把生成好的静态页面和相关资源上传到了 `master` 分支下，但是本地博客的开发环境是没有上传到仓库里的，如果换一台电脑想继续写博客更新，这就没办法。
+这时候打开仓库会发现 Hexo 其实是把 `public` 目录下生成好的静态页面和相关资源上传到了 `master` 分支下，但是本地博客的开发环境是没有上传到仓库里的，如果换一台电脑想继续写博客更新，这就没办法了。
 
-解决这个问题其实也很简单，你可以单独再创建一个仓库，专门用于上传开发环境，但我的做法是创建一个分支，比如 `hexo` 分支，这个分支专门用来上传开发环境。
+要解决这个问题其实也很简单，可以单独再创建一个仓库，专门用于上传开发环境。但我的做法是创建一个分支，比如 `hexo` 分支，这个分支专门用来上传开发环境。
 
 {% note warning %}
-需要注意，通过 git clone 下来的 next 主题，需要手动删除 .git 文件夹，不然 NexT 主题不会被提交。
+需要注意，通过 git clone 下来的 NexT 主题，需要手动删除隐藏的 .git 文件夹，不然 NexT 主题整个文件夹都不会被提交。
 {% endnote %}
 
 ## 主题
@@ -220,14 +210,6 @@ type: "tags"
 
 其它导航页面操作一样。
 
-#### 修改头像
-
-打开 `主题配置` 找到 `avatar` 修改
-
-```
-avatar: /images/avatar.gif
-```
-
 #### 增加评论模块
 
 在 NexT 官网上可以查到第三方评论系统的配置方法，我最终选择的是 [Gitment](https://github.com/imsun/gitment) 做为博客的评论系统，因为 Gitment 是一款基于 GitHub Issues 的评论系统，这样对于评论的管理完全可以在一个仓库里实现。
@@ -263,7 +245,7 @@ gitment:
 
 #### 文章链接唯一化
 
-上面说到创建文章的时候使用英文做文件名，但有有时候可能需要修改一篇已经发布的文章的标题，或者是修改它的发布时间，这样就导致文章链接地址会变化，也就间接导致 Gitment 评论的丢失。
+有时候可能需要修改一篇已经发布的文章的标题，或者是修改它的发布时间，这样就导致文章链接地址会变化，也就间接导致 Gitment 评论丢失。
 
 解决这个问题需要安装 `hexo-abbrlink` 工具
 
@@ -289,5 +271,15 @@ abbrlink:
 配置好后重新发布就能看到效果。
 
 {% note primary %}
-个人强烈推荐安装这个工具，这样创建文章的时候可以继续使用中文名，方便管理，同时也解决了上面的问题，并且对 SEO 友好。
+个人强烈推荐安装这个工具，这样创建文章的时候可以继续使用中文名，如果博客里文章多了，还是中文一目了然，也方便管理，同时也解决了上面的问题，链接永久唯一化后对 SEO 会更友好。
 {% endnote %}
+
+## 参考
+
+- [Hexo 文档](https://hexo.io/zh-cn/docs/index.html)
+- [NexT 使用文档](http://theme-next.iissnan.com/)
+- [搭建个人博客-hexo+github详细完整步骤](https://www.jianshu.com/p/189fd945f38f)
+- [Gitment：使用 GitHub Issues 搭建评论系统](https://imsun.net/posts/gitment-introduction/)
+- [hexo的next主题个性化配置教程](https://segmentfault.com/a/1190000009544924)
+- [为NexT主题添加文章阅读量统计功能](https://notes.wanghao.work/2015-10-21-为NexT主题添加文章阅读量统计功能.html)
+- [hexo 摸爬滚打之进阶教程](http://muyunyun.cn/posts/f55182c5)
