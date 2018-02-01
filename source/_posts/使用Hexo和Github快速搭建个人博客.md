@@ -1,6 +1,6 @@
 ---
 title: 使用 Hexo 和 Github 快速搭建个人博客
-category: 工具推荐
+category: 开发工具
 tags:
   - Hexo
   - NexT
