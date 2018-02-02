@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[基于jQuery WeUI的通讯录模块]]></title>
+    <url>%2Fposts%2F8913e16b%2F</url>
+    <content type="text"><![CDATA[由于 jQuery WeUI 本身没有提供通讯录模块，所以自己写了一个 demo 页面，实现了基本展示以及右侧字母快捷导航功能。考虑到通讯录模块对界面展示的定置化需求会比较大，所以没有封装成插件。下载源码后可自行修改联系人界面样式。功能比较简单，实现也没用几句代码，所以也没有太多可介绍的，感兴趣的直接看源码吧。Github 地址]]></content>
+      <categories>
+        <category>WEB开发</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>WeUI</tag>
+        <tag>通讯录</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Gulp 前端自动化工作流]]></title>
     <url>%2Fposts%2F48995743%2F</url>
     <content type="text"><![CDATA[初识 Gulp 是因为公司项目逐渐需要进行前后端分离，既然脱离了世界上最好的语言 PHP 后，也就没了 include 函数的支持，面临最大的问题就是页面 header 、 footer 等一些公用部分的代码要怎么在每个页面上引用，手动复制肯定不行。在网上搜寻一番后，发现了 gulp-file-include 这个插件，后面的故事，就像每个热恋中的人一样，恨不得每天都和 Gulp 腻在一起。经过半年的相处，也大概摸透了 Gulp 的一些习性，并根据工作上的流程，整理了一套公司内部的前端自动化部署的开发环境。本文不是 Gulp 的使用介绍，关于 Gulp 入门，请自行学习。gulp-automation少罗嗦，先看东西如何使用安装首先将 gulp-automation 下载到本地，下载好后推荐使用 Yarn 安装1$ yarn install 运行1$ gulp 成功运行后，会自动打开浏览器并访问 http://localhost:3000 页面 编写代码原始页面全部在 page 目录下编写。打开 page 目录会看到有一个 index.html 页面 123456789101112&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;!-- 引用公用页面采用以下方式 --&gt; @@include('include/head.html')&lt;/head&gt;&lt;body&gt; &lt;h1&gt;Test Page !&lt;/h1&gt; &lt;div class="test-img"&gt;&lt;/div&gt; &lt;script src="@@webRoot/static/js/main.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt; 可以看到，和正常写 HTML 代码没什么区别。对于公用代码的引用，通过这样语法进行引用 1@@include(&apos;&lt;页面地址&gt;&apos;) 这里其实就是用到了 gulp-file-include ，更多语法参数点 这里 查看！ 通过上面可得知，page/include/ 是用来存放公用部分的代码的。 这时候可能又会遇到一个问题，不是所有网站的页面都存放在根目录下的，可能会按照功能模块的不同，划分出不同的文件夹来存放不同的页面，比如我们经常会看到这样的链接： www.xxx.com/index.html www.xxx.com/news/detail.html?nid=2 www.xxx.com/product/info.html?pid=1 网站首页存放在根目录，新闻相关页面存放在 news 文件夹下，产品相关页面存放在 product 文件夹下。 这里我的做法是把所有模块都放到 page/module/ 目录下，打开目录就可以看到一个 banner 文件夹，你可以在这个目录下随意创建其它模块文件夹。 发布/打包发布 1$ gulp build 发布并打包 1$ gulp build --z 修改 package.json 里的 name 参数，可改变打包出来压缩包文件的命名打包时使用了 gulp-tinypng-nokey 插件进行图片压缩，需要将图片上传到服务器压缩后再下载，请确保打包时网络畅通 参考 Gulp 中文网 Gulp探究折腾之路(I) gulp使用小结(一) 前端构建工具gulpjs的使用介绍及技巧 常用gulp插件介绍(一) 重构你的gulpfile]]></content>
