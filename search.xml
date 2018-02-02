@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[基于jQuery WeUI的通讯录模块]]></title>
+    <title><![CDATA[基于 jQuery WeUI 的通讯录模块]]></title>
     <url>%2Fposts%2F8913e16b%2F</url>
     <content type="text"><![CDATA[由于 jQuery WeUI 本身没有提供通讯录模块，所以自己写了一个 demo 页面，实现了基本展示以及右侧字母快捷导航功能。考虑到通讯录模块对界面展示的定置化需求会比较大，所以没有封装成插件。下载源码后可自行修改联系人界面样式。功能比较简单，实现也没用几句代码，所以也没有太多可介绍的，感兴趣的直接看源码吧。Github 地址]]></content>
       <categories>
