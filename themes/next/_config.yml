@@ -174,11 +174,13 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: Links
+links_title: 个人作品
 links_layout: block
 #links_layout: inline
-#links:
-  #Title: http://example.com/
+links:
+  HoorayOS - web桌面应用框架: http://hoorayos.com
+  clicaptcha - 中文点击验证码: https://github.com/hooray/clicaptcha
+  
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
