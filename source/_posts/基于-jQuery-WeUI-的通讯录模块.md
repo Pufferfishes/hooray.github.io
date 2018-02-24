@@ -25,4 +25,6 @@ tags:
 
 <script src='//gitee.com/hooray/jquery-weui-contacts/widget_preview'></script>
 
-[Github 地址](https://github.com/hooray/jquery-weui-contacts)
+&nbsp;
+
+{% githubCard user:hooray repo:jquery-weui-contacts width:100% %}
