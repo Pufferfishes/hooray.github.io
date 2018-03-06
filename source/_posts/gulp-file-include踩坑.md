@@ -10,6 +10,8 @@ date: 2018-03-07 01:59:26
 
 在之前的这篇 {% post_link 前端自动化工作流 [前端自动化工作流] %} 文章里，我主要提到了一个 gulp 插件，就是 [gulp-file-include](https://www.npmjs.com/package/gulp-file-include) 。在使用了一段时间后，也踩了不少坑，特此开一篇文章记录一下。
 
+<!-- more -->
+
 ## 不支持 else 语法
 
 查阅官方文档，发现是支持 if 语法的：
