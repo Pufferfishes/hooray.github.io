@@ -369,4 +369,4 @@ Math.min.apply(Math, Array);
 
 - [用例子理解排列组合及基本公式如何计算](https://jingyan.baidu.com/article/63acb44ac60d4e61fcc17e2e.html)
 - [淘宝SKU组合查询算法实现](http://blog.csdn.net/rosanu_blog/article/details/49836575)
-- [Sku 多维属性状态判断算法](http://blog.jobbole.com/109138/)
+- [Sku 多维属性状态判断算法](https://keelii.github.io/2016/12/22/sku-multi-dimensional-attributes-state-algorithm/)
