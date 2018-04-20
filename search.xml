@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[gitignore如何忽略之前已提交的文件]]></title>
+    <url>%2Fposts%2F7d8efe4e%2F</url>
+    <content type="text"><![CDATA[做开发时，有些编译生成的代码我们希望不提交到 git 上，这时候就要使用 .gitignore 对文件/文件夹进行忽略，但有时候会碰到个棘手的问题，就是之前已经正常提交到 git 上的文件，即使在 .gitignore 进行了忽略，但代码仓库里依旧还是存在。其实通过几行简单的命令就可以轻松解决这个问题首先删除本地缓存1$ git rm -r --cached . 新建/修改 .gitignore 文件 将需要忽略的文件/文件夹路径写到 .gitignore 里 commit 本次变更 1$ git commit -m &quot;本次提交说明&quot; 推送到代码仓库 1$ git push]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[移动端H5页面前进后退经验汇总]]></title>
     <url>%2Fposts%2F20a4f60%2F</url>
     <content type="text"><![CDATA[在 PC 端，因为有电脑屏幕或者显示器，展示区域足够大，可以在页面顶部或者左侧放一个导航列表，导航可以是一个复杂的多层级导航。但移动端受限于手机屏幕，无法把如此复杂的导航始终放在手机屏幕上的某个位置，更多时候我们需要通过前进后退去进入不同的模块页面。在这样场景前提下，开发过场中，我发现了几个移动端页面前进后退的问题，当然也可以算是小技巧，特此记录一下。返回上一页不刷新打个比方，现在有一个商品列表页，点击新增商品进入新增页面，填写完表单后，使用 history.back() 或者 history.go(-1) 返回到列表页，这个时候我们是希望页面上能显示出刚新增的商品，但实际上是没有显示。直接上解决办法：12345678910111213$(function()&#123; pushHistory();&#125;);function pushHistory()&#123; $(window).on('popstate', function(event) &#123; location.reload(); &#125;); var state = &#123; title : '', url : '' &#125;; window.history.replaceState(state, '', '');&#125; 上面的代码我会放到公用的模块里，然后全局调用，至于某些页面如果不想返回刷新的，可以单独在页面上手动解绑 popstate 事件 123$(function()&#123; $(window).off('popstate');&#125;); 有人可能会说，新增成功后，通过 location.href 跳转到列表页就好了，这样就避免了返回不刷新的问题。 这的确是一个解决办法，并且在 PC 端常用这样来处理。那为什么在移动端不推荐呢？其实文章开头说的就已经告诉答案了，移动端很多时候是通过不停的返回回到某个入口页，再去进入其它模块。如果通过暴力的 location.href 跳转到列表页，那我想退出列表页的时候，按返回按钮，首先会回到新增页，再点返回再次回到列表页，再点返回才会退出列表页。 禁止用户返回到某个页面打个比方，现在在购物车页面，选择了部分商品，点击“购买”进入订单确认页面，点击“提交”进入支付页面。这时，如果不进行支付，点“返回”会回到订单确认页面，但由于购物车的商品已经提交生成订单了，所以回到这个页面会提示类似于“购物车商品不存在”之类的提示，对用户体验不好，最好点“返回”的时候，能直接回到购物车页面。 简单的说，就是 A 页面跳转到 B 页面， B 页面再跳转到 C 页面， C 页面点返回，希望跳过 B 页面直接回到 A 页面。 解决办法其实很简单，就是使用 location.replace 进行跳转 1location.replace('c.html'); 在 B 页面通过 location.replace 跳转到 C 页面，返回的时候，就会跳过 B 页面直接回到 A 页面。 ajax 页面记录返回地址这个问题常出现在 tab 导航页，比如订单列表： 点击页面上方的 tab 导航，会触发 ajax 请求对应的列表数据，但因为是 ajax 操作，现在我在“待付款”导航下，进入某个订单详情页再返回的时候，可能就会直接回到“全部”导航下了。 解决办法就是使用 HTML5 history 的 pushState/replaceState 方法，在点击 tab 进行 ajax 操作的时候，执行一句： 1history.replaceState(null, null, '?tab=1'); 这时候再点击 tab 导航，会发现页面还是进行了 ajax 操作，但地址栏已经有变化了，这时候进入详情页再返回，我们就能通过 url 获取需要的参数，来控制显示哪个 tab 导航下的数据了。 其实用 pushState 也是可以的，如果希望每次切换 tab 导航都希望被 history 记录下来，那就可以使用 pushState ，在返回的时候，则会依次返回。 参考 微信里iphone后退不刷新问题解决方案 ajax与HTML5 history pushState/replaceState实例]]></content>
