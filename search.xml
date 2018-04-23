@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Web APP 在线升级更新]]></title>
+    <url>%2Fposts%2Fd8a12da8%2F</url>
+    <content type="text"><![CDATA[本文提及的 webapp 指的是通过 HBuilder 打包出来的 APPAPP 离不开一个功能，那就是更新，一般我们会选择去应用市场里统一更新，但 APP 如果本身带有检查更新并升级的功能，那就再好不过了。接下来我就拿一个实际的例子介绍下，我是如何做更新功能的。制作升级包在 HBuilder 中生成升级包文件，这里需要注意，生成升级包前记得把版本号先修改选择好保存的路径，点确定即可，最终生成出来的升级包文件后缀是 .wgt 文件然后我们需要将升级包放到一个通过网址可以访问到的地址，比如：http://www.demo.com/H55D8AE4A.wgt检查更新发起 ajax 请求检测是否有新版本1234567891011$.ajax(&#123; url: '[这里替换连接地址，该连接地址返回版本号和升级包下载地址]'&#125;).done(function(cb)&#123; plus.runtime.getProperty(plus.runtime.appid, function(inf)&#123; if(cb.version != inf.version)&#123; downloadWgt(cb.url); &#125;else&#123; alert('已经是最新版本'); &#125; &#125;);&#125;); ajax 请求返回 json 数据如下 1234&#123; "version": 0.8, "url": "http://www.demo.com/H55D8AE4A.wgt"&#125; 下载升级包从服务器上下载 wgt 升级包 1234567891011function downloadWgt(url)&#123; plus.nativeUI.showWaiting('下载中...'); plus.downloader.createDownload(url, &#123;filename: '_doc/update/'&#125;, function(d, status)&#123; plus.nativeUI.closeWaiting(); if(status == 200)&#123; installWgt(d.filename); &#125;else&#123; plus.nativeUI.alert('下载失败！'); &#125; &#125;).start();&#125; 安装更新123456789101112function installWgt(path)&#123; plus.nativeUI.showWaiting('安装中...'); plus.runtime.install(path, &#123;force: true&#125;, function()&#123; plus.nativeUI.closeWaiting(); plus.nativeUI.alert('更新完成，即将重启应用！', function()&#123; plus.runtime.restart(); &#125;); &#125;, function(e)&#123; plus.nativeUI.closeWaiting(); plus.nativeUI.alert('安装失败[' + e.code + ']：' + e.message); &#125;);&#125; 总结基本是照着官方提供的 demo 做的，不太一样的地方是，官方 demo 里的升级包下载地址是写死的，我修改成通过接口将版本号和下载地址一起返回回来。 其次还有一些更好的优化体验，比如静默安装，每次启动 APP 先检查一次是否有更新，如果有则后台静默开始下载安装，安装完成后无需做提示，用户下次启动 APP 就是最新版。 最后就是，应用资源更新是违反 apple 的 appstore 政策的，我没尝试去上架，如果无法上架，有个解决办法，就是通过接口动态开启检查更新的界面，审核的时候关闭，审核通过就开启，当然还是不建议这样操作。本文更适用于 Android 版本。 参考 App资源在线升级更新]]></content>
+      <categories>
+        <category>WEB开发</category>
+      </categories>
+      <tags>
+        <tag>webapp</tag>
+        <tag>hbuilder</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[gitignore如何忽略之前已提交的文件]]></title>
     <url>%2Fposts%2F7d8efe4e%2F</url>
     <content type="text"><![CDATA[做开发时，有些编译生成的代码我们希望不提交到 git 上，这时候就要使用 .gitignore 对文件/文件夹进行忽略，但有时候会碰到个棘手的问题，就是之前已经正常提交到 git 上的文件，即使在 .gitignore 进行了忽略，但代码仓库里依旧还是存在。其实通过几行简单的命令就可以轻松解决这个问题首先删除本地缓存1$ git rm -r --cached . 新建/修改 .gitignore 文件 将需要忽略的文件/文件夹路径写到 .gitignore 里 commit 本次变更 1$ git commit -m &quot;本次提交说明&quot; 推送到代码仓库 1$ git push]]></content>
