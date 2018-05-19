@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[网件 R7000 开启科学上网]]></title>
+    <url>%2Fposts%2Fb963d19b%2F</url>
+    <content type="text"><![CDATA[为了充分享受到 100M 带宽的效果，准备给家里换台路由器，在做了充足的功课后，决定购买网件的 R7000 ，而且也是看中了可以刷梅林改版固件，可以让路由器的可玩性更高。那是怎么样的可玩呢？今天我就通过 R7000 成功开启了科学上网(翻墙)。因为网上的配置和我实际操作中有一点点差异，所以下面的内容主要是记录下我个人的配置流程。准备工作一台已经刷好梅林改版固件的 R7000 路由器。实际上路由器并不是重点，梅林改版固件才是重点，有很多路由器都可以刷梅林固件，即便是网件的路由器，其它型号的也可以。至于怎么刷梅林改版固件，我就不单独介绍了，网上有很多教程已经写得很详细了。像我比较偷懒，我买路由器的时候，就直接找了家可以帮忙刷固件的店铺，让店家帮我刷好。固件下载地址： Koolshare 论坛安装 ShadowsocksShadowsocks 也就是我们科学上网的工具，在安装 Shadowsocks 之前，我们需要先去“系统管理 - 系统设置”里设置一下，如下图所示：分别将：Format JFFS partition at next boot 设置为否Enable JFFS custom scrips and configs 设置为是然后我们去“软件中心”安装“科学上网”，如果你能在“未安装”里找到“科学上网”，那就直接安装，如果找不到，那说明有一股神秘的力量将“科学上网”下架了，这个时候就需要进行离线安装了。找到“软件中心GitHub项目”按钮，点击它。在打开的 Github 页面里进入“shadowsocks”目录下，下载“shadowsocks.tar.gz”文件到本地然后回到路由器界面，进入“离线安装”，选择并上传安装刚才下载的“shadowsocks.tar.gz”文件，等到提示安装完成，再回到“软件中心”界面，就能看到“科学上网”的图标了。配置 Shadowsocks安装好后，点击“科学上网”，首次进入会提示你去配置节点，如果没有提示，那就手动点击“节点管理 - 添加节点”。然后就是在“编辑ss账号”里写入账号信息，因为我用的是多态，它直接有提供 Shadow Suite 的配置信息，一模一样填入进去即可。使用模式：【1】gfwlist模式节点别名：任意填写服务器地址：域名服务器端口：端口密码：密码加密方式：加密方式添加好后点击“应用”即可。最后我们打开“科学上网开关”，接着软件会开始检测运行状态，出现两个 ✓ 则表示能科学上网啦~最后最后当然是先测试一下，先用浏览器打开看看是否正常：然后再用手机看看是否正常：可以看到，我手机并没有开启 VPN 也可以正常科学上网，这就是路由器配置 Shadowsocks 的好处，只要连到路由器，任何终端都无需配置，默认开启科学上网。]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>路由器</tag>
+        <tag>网件</tag>
+        <tag>科学上网</tag>
+        <tag>翻墙</tag>
+        <tag>Shadowsocks</tag>
+        <tag>多态</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[移动端使用 sessionStorage 实现返回上一页浏览的历史位置]]></title>
     <url>%2Fposts%2F7765b5eb%2F</url>
     <content type="text"><![CDATA[移动端列表页一般会采用滚动加载的方式，也就是滚动到靠近页面底部，自从触发加载下一页数据，整个过程通过 ajax 实现。但这也就出现了一个问题，比如当用户滚动到第三页，点击列表某一项进入详情页，这时候再返回列表页，会发现列表也数据被重置回第一页了，用户又得继续滑动才能回到之前浏览的历史位置。这样的用户体验肯定是很糟糕的，那是否有合适的解决方案呢？PC 端是如何解决的碰到这个问题，我的第一反应是看看 PC 端是如何解决这问题的，然后发现 PC 端完美避开了这一问题， PC 端通过可以打开新页面这一特性，完全不会存在这一问题。即使列表页不是通过打开新页面的方式，但 PC 端还有一个特性就是， PC 端的列表是分页的形式，也就是翻页的同时会刷新页面，页码会带在 URL 链接上，这样在返回的时候，可以精确的返回到指定的页面。移动端要如何解决PC 端的解决方案似乎无法移植到移动端，首先移动端没有打开新页面这功能（微信内置浏览器不支持）。其次，如果采用分页的方式，那用户体验又下降了，用户不仅需要手动去点击翻下一页，而且因为是跳转页面，用户也无法体验到 ajax 无缝刷新的特性。难道就没有合适的解决方案了么？当然不是的！通过查了些资料，并且手动写了个 demo ，发现通过使用 sessionStorage 可以完美解决这一问题。实现思路思路其实很简单，就是在用户每次加载页面数据的时候，将本次加载的列表 json 数据、当前页码保存到 sessionStorage 里（需要注意的是，列表 json 数据是需要累加的，假设用户滚动加载到第三页，则 sessionStorage 里要存放三页的列表数据）。然后在用户点击列表某一项的时候，将当前列表距离页面顶部的距离记录下来，也存放到 sessionStorage 里即可（也可以给列表页增加一个滚动监听的事件，实时监听位置）。当用户从其它页面返回到列表的时候，先判断 sessionStorage 里是否有数据，如果有，则直接将 sessionStorage 里的列表数据复原到页面上，当前页码也更新成 sessionStorage 里存放的页码，这样做的目的是实现用户滚动页面可以继续往后加载数据。最后通过 sessionStorage 里存放的页面位置，定位到之前的位置即可。如果返回到列表页，没有 sessionStorage 数据，那就什么都不做，还是按原有功能实现即可。为什么不用 cookie 或者 localStorage 来实现？因为 sessionStorage 的特性最适合，关闭页面后自动失效。这样就不会出现用户下次打开列表页，还是显示之前的内容。演示&nbsp;难点实现思路清晰后，核心部分反而没有什么难点，倒是在配合 MeScroll 使用上，发现了几个需要注意的地方。不同的滚动加载控件需要根据控件本身一些功能设置实现我们想达到的效果设置当前页码通过 mescroll.setPageNum(num); 可以设置当前 page.num 的值，但通过阅读源码发现：1234/*设置page.num的值*/MeScroll.prototype.setPageNum = function(num) &#123; this.optUp.page.num = num - 1;&#125; 设置的页面会减 1 ，所以在触发 sessionStorage 进行设置页码的时候，需要手动加 1 。 隐藏上拉加载状态在 demo 中我是使用 mescroll.endBySize(dataSize, totalSize, systime); 进行隐藏上拉加载的状态，通过阅读源码发现： 1234567891011121314/*联网回调成功,结束下拉刷新和上拉加载 * dataSize: 当前页的数据量(必传) * totalSize: 列表所有数据总数量(必传) * systime: 服务器时间 (可空) */MeScroll.prototype.endBySize = function(dataSize, totalSize, systime) &#123; var hasNext; if(this.optUp.use &amp;&amp; totalSize != null) &#123; var loadSize = (this.optUp.page.num - 1) * this.optUp.page.size + dataSize; //已加载的数据总数 console.log(loadSize, totalSize); hasNext = loadSize &lt; totalSize; //是否还有下一页 &#125; this.endSuccess(dataSize, hasNext, systime);&#125; 这个方法实际上是通过 ( 当前页码 - 1 ) * 每页数量 + 当前页数量 计算出已加载数据总数，然后去对比列表数据总数，判断出是否还有下一页。 既然理解了这个方法，那只要在复原 sessionStorage 里的列表数据后，模拟触发一次即可。 但这个方法里第一个参数 dataSize 并不好模拟，因为 sessionStorage 里只存放了列表数据合集。我的做法是通过 数据合集数量 % 每页数量 取出余数，这个余数其实就是我最后一次加载的列表数量，但需要注意的是，这个余数可能是 0 ，余数是 0 则代表最后一次加载的列表数量和每页数量一样，所以如果余数是 0 的时候，每页数量就是最后一次加载的列表数量。 每页数量就是 page.size 的值，默认是 10 参考 h5页面使用sessionStorage滚动到上次浏览器位置 H5 本地存储localStorage的使用（返回前一页浏览的历史位置）]]></content>
