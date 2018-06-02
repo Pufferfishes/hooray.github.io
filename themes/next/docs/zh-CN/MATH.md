@@ -47,6 +47,67 @@ hexo clean && hexo g -d
 # 或者 hexo clean && hexo s
 ```
 
+#### 使用 MathJax 给公式编号并引用公式
+
+在新版本的 NexT 主题中，我们加入了公式自动编号和引用功能。下面简要介绍一下如何使用这项功能。
+
+为了使用这项功能，一般来说，你必须把所使用的 LaTeX 公式放在 `equation` 环境里面，采用旧的方法（也就是说，仅仅把公式的每一边用两个 $ 符号包含起来）是无效的。如何引用公式？你只需要在书写公式的时候给公式一个 `\
+label{}` 标记（tag），然后在正文中，可以使用 `\ref{}` 或者 `\eqref{}` 命令来引用对应的公式。使用 `\eqref{}` 是推荐的方式，因为如果你使用 `\ref{}`，公式在文中的引用编号将没有圆括号包围。下面介绍几种常见的公式编号例子。
+
+对于简单的公式，使用下面的方式给公式一个标记，
+
+```latex
+$$\begin{equation}
+e=mc^2
+\end{equation}\label{eq1}$$
+```
+
+然后，在正文中，你可以轻松引用上述公式，一个简单的例子如下：
+
+```
+著名的质能方程 $\eqref{eq1}$ 由爱因斯坦提出 ...
+```
+
+对于多行公式，在 `equation` 环境中，你可以使用 `aligned` 环境把公式分成多行，
+
+```latex
+$$\begin{equation}
+\begin{aligned}
+a &= b + c \\
+  &= d + e + f + g \\
+  &= h + i
+\end{aligned}
+\end{equation}\label{eq2}$$
+```
+
+要对齐多个公式，我们需要使用 `align` 环境。align 环境中的每个公式都有自己的编号：
+
+```
+$$\begin{align}
+a &= b + c \label{eq3} \\
+x &= yz \label{eq4}\\
+l &= m - n \label{eq5}
+\end{align}$$
+```
+
+在 `align` 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 [`\nonumber`](https://tex.stackexchange.com/questions/17528/show-equation-number-only-once-in-align-environment) 命令即可。例如：
+
+```latex
+$$\begin{align}
+-4 + 5x &= 2+y \nonumber  \\
+ w+2 &= -1+w \\
+ ab &= cb
+\end{align}$$
+```
+
+有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 `\tag{}` 命令来实现，例如：
+
+```latex
+$$x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}$$
+```
+
+如果你想要了解更多信息，请访问 [MathJax 关于公式编号的官方文档](http://docs.mathjax.org/en/latest/tex.html#automatic-equation-numbering)。同时，你也可以访问[这篇博客](https://jdhao.github.io/2018/01/25/hexo-mathjax-equation-number/) 来获取更多细节信息。
+
 ### Katex
 
 Katex 渲染引擎相对于 MathJax 来说**大大提高了速度**，而且在关掉 JavaScript 时也能渲染数学公式。
@@ -136,6 +197,7 @@ markdown:
 如果配置的内容接在冒号后面，那么内容和冒号之间必须有一个空格(例如`enable: true`)
 
 ```yml
+
 # Math Equations Render Support
 math:
   enable: false
@@ -150,20 +212,24 @@ math:
 
   # hexo-rendering-pandoc (or hexo-renderer-kramed) needed to full MathJax support.
   mathjax:
+    # Use 2.7.1 as default, jsdelivr as default CDN, works everywhere even in China
+    cdn: //cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     # For newMathJax CDN (cdnjs.cloudflare.com) with fallback to oldMathJax (cdn.mathjax.org).
-    cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    #cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     # For direct link to MathJax.js with CloudFlare CDN (cdnjs.cloudflare.com).
     #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML
-    # For automatic detect latest version link to MathJax.js and get from CloudFlare.
+    # For automatic detect latest version link to MathJax.js and get from Bootcss.
     #cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
 
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin)
   # needed to full Katex support.
   katex:
-    # Use Katex 0.7.1 as default
-    cdn: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css
-    # If you want to try the latest version of Katex, use one below instead
-    #cdn: //cdn.jsdelivr.net/katex/latest/katex.min.css
+    # Use 0.7.1 as default, jsdelivr as default CDN, works everywhere even in China
+    cdn: //cdn.jsdelivr.net/npm/katex@0.7.1/dist/katex.min.css
+    # CDNJS, provided by cloudflare, maybe the best CDN, but not works in China
+    #cdn: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css
+    # Bootcss, works great in China, but not so well in other region
+    #cdn: //cdn.bootcss.com/KaTeX/0.7.1/katex.min.css
 ```
 
 ### enable
@@ -216,6 +282,16 @@ title: 'Not Render Math Either'
 
 MathJax 和 Katex 都提供了 `cdn` 的配置，如果你不知道什么是 `cdn` ，**请不要修改这个配置**。
 
-对于 MathJax 来说，默认采用了会自动 fallback 的 CDN，也提供了其他 CDN 作为可选项。
+首先，MathJax 和 Katex 都使用了 [jsDelivr](https://www.jsdelivr.com/) 作为默认 CDN；
 
-对于 Katex 来说，我们使用 cdnjs 作为默认 CDN，并采用 0.7.1 的 Katex 版本；由于上面提到的版本问题，如果你需要使用其他 CDN，也请使用 Katex 0.7.1 版本。当然，如果你想查看最新版本的 Katex 的效果，我们也提供了一个能自动获取最新版本的 Katex 的 CDN 作为可选项。
+之所以选择 jsDelivr 是因为它在全球各地都有比较不错的速度，而且具有中国官方颁布的 ICP 证书，在中国也能比较好地访问。
+
+同时，我们也提供了其他的 CDN 备选方案，包括著名的 [CDNJS](https://cdnjs.com/) 和在中国地区具有不错访问效果的 [Bootcss](http://www.bootcdn.cn/)。
+
+对于 MathJax 来说，我们目前采用的版本为 2.7.1。
+
+对于 Katex，由于上面提到的版本问题，我们目前采用的版本为 0.7.1。
+
+如果你想尝试我们提供的备选方案以外的 CDN，请注意使用对应的版本。
+
+特别的，对于中国的博客主，或者您的博客访问大部分来源于中国，由于 CDNJS 在部分中国地区被墙，请不要使用 CDNJS 作为 CDN。
