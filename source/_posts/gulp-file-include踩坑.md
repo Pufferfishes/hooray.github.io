@@ -1,6 +1,6 @@
 ---
 title: gulp-file-include 踩坑
-category: 开发工具
+category: WEB开发
 tags:
   - Gulp
   - 自动化
