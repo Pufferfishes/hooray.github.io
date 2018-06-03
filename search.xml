@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Atom 备份神器 —— Sync-settings]]></title>
+    <url>%2Fposts%2Fe7a857c2%2F</url>
+    <content type="text"><![CDATA[当 Atom 的扩展越装越多，配置也越来越偏离了系统默认设置时，一旦电脑重装后需要复原开发环境，这将是一件比较头疼的事。今天就推荐一个扩展，可以解决这一问题，那就是 Sync-settings ，根据扩展介绍“ Synchronize settings, keymaps, user styles, init script, snippets and installed packages across Atom instances. ”，简言之就是可以同步 Atom 的设置文件、自定义快捷键、用户风格、初始化脚本及代码片段，还支持已安装的插件同步。安装在安装扩展里搜索“ sync-settings ”并安装，安装好后点击设置会看见下图：设置第一步，打开自己的 github 创建一个 personal access token（记住要勾选 gist 权限，见下图），然后复制生成的 token 序列粘贴到插件的上图中标 1 的红框里。第二步，打开 github 的 gist 服务，创建一个 gist，复制生成 gistID 粘贴到插件的上图中标 2 的红框里。备份与复原以上就完成了所有配置，那如何进行备份呢？在文档编辑页面键入快捷键 Ctrl + Shift + P ，输入“ sync ”就能看到以下选项：选择第二个 Backup 就会开始进行备份了，备份好后，右上角会出现备份成功的提示：复原的话，只需选择 Restore 就会自动进行复原，包括扩展也会同步安装，但有一点需要注意的是，扩展里的配置则不会备份，这个是需要手动去重新设置的，但即便如此，也已经节省了我们很大一部分时间了。参考Atom编辑器折腾记_(12)Sync-setttings(插件-备份神器)]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Atom</tag>
+        <tag>备份</tag>
+        <tag>sync-settings</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Vultr搭建SS]]></title>
     <url>%2Fposts%2Fef443e45%2F</url>
     <content type="text"><![CDATA[嘘 ~ 安静，开始了。注册 Vultr进入 Vultr 官网正常注册，然后通过邮箱激活账号。这里特别说明一下，你可以上网上找一些优惠活动，比如下面这个：注册后充值 $10 送 $25 活动（不保证长期有效）充值支持支付宝，所以购买还是很方便的。不过通过上面那活动注册的，必须用 paypal 充值才能享受福利。购买服务器首先选择地区，默认是日本东京。然后选择服务器的系统，这里就默认不用改动，选择 CentOS 7 x64 即可。接着选择服务器规格，这里会发现日本东京 $2.5 每月的服务器已经售罄了，只能选择 $5 每月的了。如果想省钱的话，可以返回第一步，多切换不同的地区看看，有哪些地区还有 $2.5 每月的服务器。Vultr 是按小时实时扣费的，并不是按月扣费的。如果想创建多个服务器，需要提交申请，我的申请理由是：use to set up my server, like blog, bbs, etc.最后点击“ Deploy Now ”创建服务器吧，创建好稍微等一会，等状态变成 Running 表示服务器已经启动好了。连接服务器这里我使用的是 XShell 连接服务器。首先点开刚才创建好的服务器，看到这个界面：IP Address：服务器IPUsername：登录用户名Password：登录密码接下来打开 XShell ，点击“文件 - 新建”，依次配置好服务器信息。创建好后并连接，看到如下界面，则表示连接成功了。安装SS执行 shadowsocks 一键安装脚本123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.shchmod +x shadowsocks-all.sh./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log可以一路默认安装，当然建议是安装的时候就把密码、端口，以及加密方式选择好，省得之后还得修改。安装成功后会看到如下提示：12345678910111213Congratulations, your_shadowsocks_version install completed!Your Server IP :your_server_ipYour Server Port :your_server_portYour Password :your_passwordYour Encryption Method:your_encryption_methodYour QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients) ss://your_encryption_method:your_password@your_server_ip:your_server_portYour QR Code has been saved as a PNG file path: your_path.pngWelcome to visit:https://teddysun.com/486.htmlEnjoy it!脚本默认创建是单用户的配置，如果要设置多用户，则需要到配置文件里修改配置，不同版本的配置文件路径也不同：Shadowsocks-Python 版：/etc/shadowsocks-python/config.jsonShadowsocksR 版：/etc/shadowsocks-r/config.jsonShadowsocks-Go 版：/etc/shadowsocks-go/config.jsonShadowsocks-libev 版：/etc/shadowsocks-libev/config.json上面的配置文件路径保不准什么时候会变，就像网上大部分的教程都是说配置文件是 /etc/shadowsocks.json 这个路径一样。所以最简单的方法就是通过 find / -name *.json 查一下有哪些 json 文件。多用户多端口配置格式参考如下：123456789101112131415&#123; &quot;server&quot;:&quot;0.0.0.0&quot;, &quot;local_address&quot;:&quot;127.0.0.1&quot;, &quot;local_port&quot;:1080, &quot;port_password&quot;:&#123; &quot;8989&quot;:&quot;password0&quot;, &quot;9001&quot;:&quot;password1&quot;, &quot;9002&quot;:&quot;password2&quot;, &quot;9003&quot;:&quot;password3&quot;, &quot;9004&quot;:&quot;password4&quot; &#125;, &quot;timeout&quot;:300, &quot;method&quot;:&quot;aes-256-cfb&quot;, &quot;fast_open&quot;: false&#125;修改完成后需要执行 reboot 重启服务器。执行对应命令进入配置文件后，按 i 键进入编辑模式，左下角出现 -- INSERT -- 字样后，表示可以开始编辑。编辑完成后按 ESC 键退出编辑模式，左下角 -- INSERT -- 字样消失，输入 :wq ，回车执行，这时候文件会保存并返回。安装 TCP 加速软件因为服务器在国外，可能会不太稳定，这时候就很有必要安装 TCP 加速软件来提速，一般有锐速和 Google BBR 。具体就不多介绍了，安装教程如下：Vultr 专用破解版锐速一键安装脚本（推荐）原版 &amp; 魔改版 Google BBR 拥塞控制算法一键安装脚本最后最后下载对应的 shadowsocks 客户端软件，配置好，开始科学上网吧。当然也可以配合我的上篇文章《网件 R7000 开启科学上网》，直接在路由器里配置好，也能科学上网。参考实战vultr搭建SSR+锐速——超速看youtube1080pVultr VPS主机快速安装Shadowsocks（ss）完整图文教程搬瓦工shadowsocks多用户配置教程Vultr 一键搭建酸酸 Shad0ws0cks 图文教程（推荐）]]></content>
@@ -99,7 +112,7 @@
     <url>%2Fposts%2F5f8cb75e%2F</url>
     <content type="text"><![CDATA[在之前的这篇 [前端自动化工作流] 文章里，我主要提到了一个 gulp 插件，就是 gulp-file-include 。在使用了一段时间后，也踩了不少坑，特此开一篇文章记录一下。不支持 else 语法查阅官方文档，发现是支持 if 语法的：在实际使用中，自然而然的就用上了 if/else：123@@include(&apos;test.html&apos;, &#123; &quot;age&quot;: 16&#125;)12345@@if(age &gt;= 18)&#123; &lt;b&gt;允许进入&lt;/b&gt;&#125;else&#123; &lt;b&gt;禁止进入&lt;/b&gt;&#125;但输出的结果是：所以这里只能写两个 if 来实现：123456@@if(age &gt;= 18)&#123; &lt;b&gt;允许进入&lt;/b&gt;&#125;@@if(age &lt; 18)&#123; &lt;b&gt;禁止进入&lt;/b&gt;&#125;如果有更多条件判断，则继续增加 if 语句即可。临时变量无法在 if/for/loop 嵌套中使用这个描述可能不太好理解，具体看下这段代码：12345@@for(var i = 0; i &lt; arr.length; i++)&#123; @@if(i == 0)&#123; &lt;b&gt;这是第一条&lt;/b&gt; &#125;&#125;我希望循环 arr 数组的时候，第一条输出“这是第一条”文字，但执行会提示 i is not defined: (i == 0) ，试了好多写法都不行，最后发现用反单引号（`）加三元运算符可以解决这个问题：123@@for(var i = 0; i &lt; arr.length; i++)&#123; `+(i == 0 ? &apos;&lt;b&gt;这是第一条&lt;/b&gt;&apos; : &apos;&apos;)+`&#125;]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>WEB开发</category>
       </categories>
       <tags>
         <tag>Gulp</tag>
@@ -145,7 +158,7 @@
     <url>%2Fposts%2F48995743%2F</url>
     <content type="text"><![CDATA[初识 Gulp 是因为公司项目逐渐需要进行前后端分离，既然脱离了世界上最好的语言 PHP 后，也就没了 include 函数的支持，面临最大的问题就是页面 header 、 footer 等一些公用部分的代码要怎么在每个页面上引用，手动复制肯定不行。在网上搜寻一番后，发现了 gulp-file-include 这个插件，后面的故事，就像每个热恋中的人一样，恨不得每天都和 Gulp 腻在一起。经过半年的相处，也大概摸透了 Gulp 的一些习性，并根据工作上的流程，整理了一套公司内部的前端自动化部署的开发环境。本文不是 Gulp 的使用介绍，关于 Gulp 入门，请自行学习。gulp-automation少罗嗦，先看东西如何使用准备工作安装 Node.js安装 Yarn安装 Gulp安装 Ruby安装 Compass安装首先将 gulp-automation 下载到本地，下载好后推荐使用 Yarn 安装1$ yarn install运行1$ gulp成功运行后，会自动打开浏览器并访问 http://localhost:3000 页面编写代码原始页面全部在 page 目录下编写。打开 page 目录会看到有一个 index.html 页面123456789101112&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;!-- 引用公用页面采用以下方式 --&gt; @@include('include/head.html')&lt;/head&gt;&lt;body&gt; &lt;h1&gt;Test Page !&lt;/h1&gt; &lt;div class="test-img"&gt;&lt;/div&gt; &lt;script src="@@webRoot/static/js/main.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;可以看到，和正常写 HTML 代码没什么区别。对于公用代码的引用，通过这样语法进行引用1@@include(&apos;&lt;页面地址&gt;&apos;)这里其实就是用到了 gulp-file-include ，更多语法参数点 这里 查看！通过上面可得知，page/include/ 是用来存放公用部分的代码的。这时候可能又会遇到一个问题，不是所有网站的页面都存放在根目录下的，可能会按照功能模块的不同，划分出不同的文件夹来存放不同的页面，比如我们经常会看到这样的链接：www.xxx.com/index.htmlwww.xxx.com/news/detail.html?nid=2www.xxx.com/product/info.html?pid=1网站首页存放在根目录，新闻相关页面存放在 news 文件夹下，产品相关页面存放在 product 文件夹下。这里我的做法是把所有模块都放到 page/module/ 目录下，打开目录就可以看到一个 banner 文件夹，你可以在这个目录下随意创建其它模块文件夹。发布/打包发布1$ gulp build发布并打包1$ gulp build --z修改 package.json 里的 name 参数，可改变打包出来压缩包文件的命名打包时使用了 gulp-tinypng-nokey 插件进行图片压缩，需要将图片上传到服务器压缩后再下载，请确保打包时网络畅通参考Gulp 中文网Gulp探究折腾之路(I)gulp使用小结(一)前端构建工具gulpjs的使用介绍及技巧常用gulp插件介绍(一)重构你的gulpfile]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>WEB开发</category>
       </categories>
       <tags>
         <tag>Gulp</tag>
