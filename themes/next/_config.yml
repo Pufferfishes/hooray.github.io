@@ -191,6 +191,7 @@ links_layout: block
 links:
   HoorayOS - web桌面应用框架: http://hoorayos.com
   clicaptcha - 中文点击验证码: https://github.com/hooray/clicaptcha
+  gulp-automation - 前端自动化工作流: https://gitee.com/eoner/gulp-automation
 
 # Sidebar Avatar
 avatar:
