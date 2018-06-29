@@ -89,7 +89,8 @@ var sku = {
 
 有了这两组数据，就可以实现最基本的 SKU 选择功能了。用 `属性集` 去渲染 DOM，当用户选择好 SKU 后，程序将用户选择的属性拼接成一个 sku 字符串，比如 `金;16G;电信` ，再根据这个字符串去 `数据集` 里获取库存和价格，演示如下：
 
-{% iframe //jsrun.net/adqKp/embedded/all/light 100% 300 %}
+<iframe height='265' scrolling='no' title='1-基础功能实现' src='//codepen.io/hooray/embed/RJEwxm/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/hooray/pen/RJEwxm/'>1-基础功能实现</a> by 胡睿 (<a href='https://codepen.io/hooray'>@hooray</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 上面这个演示有个最大的问题就是，必须把每个属性都选择后，才能获取到对应的库存和价格，如果没有选择完整，就无法获取对应的数据。
 
@@ -283,7 +284,8 @@ Math.min.apply(Math, Array);
 
 至此，我们已经能实现用户选择一个或多个属性时，均能展示当前的库存和价格信息，演示如下：
 
-{% iframe //jsrun.net/9dqKp/embedded/all/light 100% 300 %}
+<iframe height='265' scrolling='no' title='2-进阶功能实现' src='//codepen.io/hooray/embed/JZwjpa/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/hooray/pen/JZwjpa/'>2-进阶功能实现</a> by 胡睿 (<a href='https://codepen.io/hooray'>@hooray</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ### 关联 SKU 验证
 
@@ -344,7 +346,8 @@ Math.min.apply(Math, Array);
 
 按照这个思路，我们最终的演示也出来了
 
-{% iframe //jsrun.net/bdqKp/embedded/all/light 100% 300 %}
+<iframe height='265' scrolling='no' title='3-完整功能实现' src='//codepen.io/hooray/embed/KebKoW/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/hooray/pen/KebKoW/'>3-完整功能实现</a> by 胡睿 (<a href='https://codepen.io/hooray'>@hooray</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ## 总结
 
