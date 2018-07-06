@@ -112,7 +112,7 @@ Enjoy it!
 上面的配置文件路径保不准什么时候会变，就像网上大部分的教程都是说配置文件是 `/etc/shadowsocks.json` 这个路径一样。所以最简单的方法就是通过 `find / -name *.json` 查一下有哪些 json 文件。
 {% endnote %}
 
-多用户多端口配置格式参考如下：
+多端口多用户配置格式参考如下：
 
 ```
 {
@@ -132,7 +132,25 @@ Enjoy it!
 }
 ```
 
+配置好后去开启对应的端口，修改 `/etc/sysconfig/iptables` 文件，增加如下一行（有几个端口就增加几行）：
+
+```
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 10000 -j ACCEPT
+```
+
 修改完成后需要执行 `reboot` 重启服务器。
+
+重启后无法无法使用新的端口，有可能是因为防火墙里没有允许该端口，则需要运行如下命令将端口添加到防火墙里：
+
+```
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+```
+
+然后重新载入
+
+```
+firewall-cmd --reload
+```
 
 {% note info %}
 执行对应命令进入配置文件后，按 `i` 键进入编辑模式，左下角出现 `-- INSERT --` 字样后，表示可以开始编辑。
@@ -160,3 +178,4 @@ Enjoy it!
 - [Vultr VPS主机快速安装Shadowsocks（ss）完整图文教程](http://vultr.aicnm.com/Vultr-VPS%E4%B8%BB%E6%9C%BA%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85Shadowsocks%EF%BC%88ss%EF%BC%89%E5%AE%8C%E6%95%B4%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B/)
 - [搬瓦工shadowsocks多用户配置教程](http://calonye.com/22419.html)
 - [Vultr 一键搭建酸酸 Shad0ws0cks 图文教程（推荐）](https://www.vultrcn.com/6.html)
+- [CentOS7使用firewalld打开关闭防火墙与端口](http://www.cnblogs.com/moxiaoan/p/5683743.html)
