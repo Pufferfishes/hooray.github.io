@@ -34,14 +34,14 @@ tags:
 
 这里我将容器设为相对定位，图片设为决定定位，并且高度和宽度均为 100% ，这样图片和容器的高宽就一样了。
 
-最后来看下在实际页面中的应用，这里我分别用三种尺寸的图片（200*200、200*220、180*200）来模拟图片尺寸比例不同时，如何在响应式设计下实现统一比例的展示效果：
+最后来看下在实际页面中的应用，这里我分别用三种尺寸的图片（200\*200、200\*220、180\*200）来模拟图片尺寸比例不同时，如何在响应式设计下实现统一比例的展示效果：
 
 <iframe height='300' scrolling='no' title='4.响应式设计通过padding实现固定比例展示图片' src='//codepen.io/hooray/embed/YjXmXg/?height=300&theme-id=0&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/hooray/pen/YjXmXg/'>4.响应式设计通过padding实现固定比例展示图片</a> by 代码小睿 (<a href='https://codepen.io/hooray'>@hooray</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ## 总结
 
-这个方法比起占位图的方法好处自然不用说，省去了制作/修改占位图的时间。但也有一定缺陷，就是这方法实际会强制拉伸图片为我们设置的高宽比，假设我们设置的高宽比是 1:2，但如果实际数据源提供的图片是正方形的话，强制拉伸后，图片就变形了。比起占位图 + `background-image:cover;` 的方法，对图片进行裁切，牺牲了部分内容的展现，保证了图片不会变形。
+这个方法比起占位图的方法好处自然不用说，省去了制作/修改占位图的时间。但也有一定缺陷，就是这方法实际会强制拉伸图片为我们设置的高宽比，假设我们设置的高宽比是 1:2，但如果实际数据源提供的图片是正方形的话，强制拉伸后，图片就变形了。比起 `占位图` + `background-image:cover;` 的方法，对图片进行裁切，牺牲了部分内容的展现，保证了图片不会变形。
 
 这两种方法各有取舍，看业务需求可以自由选择。
 
