@@ -15,7 +15,7 @@ tags:
 在学习官方[教程](https://cn.vuejs.org/v2/guide/)的时候，我发现模板语法、计算属性、条件和列表渲染，还有事件处理，基本看一遍教程，上手熟悉下就基本都能掌握。唯独组件这块花了很多时间，并且在写一个 todolist 的 demo 时候踩了很多坑，又是看教程，又是查资料，才感觉初步掌握。
 
 {% note info %}
-这篇文章没有用到 Webpack 、Node.js 技术，也没有使用到 Vue 里的单文件组件，仅用最低成本方式，直接在页面里引用 Vue 的 CDN ，并通过 `Vue.component();` 方法直接创建组件。
+这篇文章没有用到 Webpack 、Node.js 技术，也没有使用到 Vue 里的单文件组件，仅用最低成本方式，在页面里引用 Vue 的 CDN ，并通过 `Vue.component();` 方法直接创建组件。
 {% endnote %}
 
 <!-- more -->
