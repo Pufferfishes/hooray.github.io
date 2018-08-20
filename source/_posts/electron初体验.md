@@ -22,7 +22,7 @@ date: 2018-08-20 11:15:45
 
 ## 入门
 
-快速入门我使用了官方的 [electron/electron-quick-start](https://github.com/electron/electron-quick-start) 库，下载这个库后直接安装依赖，然后运行，就可以看到如下的效果。
+快速入门我使用了官方的 [electron-quick-start](https://github.com/electron/electron-quick-start) 库，下载这个库后直接安装依赖，然后运行，就可以看到如下的效果。
 
 ```bash
 # 安装依赖
@@ -199,7 +199,9 @@ ipcRenderer.on('say', (event, arg) => {
 
 ## 总结
 
-不明白的地方优先查看[官方文档](https://electronjs.org/docs)，因为官方文档太完整了，虽然部分还是英文的，没有翻译完整，但并不影响阅读，因为官方文档有很多例子，看代码就能理解。
+不明白的地方优先查看[官方文档](https://electronjs.org/docs)，因为官方文档太完整了，虽然部分还是英文的，没有翻译完整，但并不影响阅读，因为官方文档有很多例子，看代码就能理解，也可以下载官方的 [electron-api-demos](https://github.com/electron/electron-api-demos) 库，整理了部分 API 的实例，当然这个项目本身也是一个很好的 Electron 演示。
+
+或者
 
 ## 参考
 
