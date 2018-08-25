@@ -88,7 +88,19 @@ mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, resizable
 
 ### 手动实现窗口拖动
 
-虽然官方已经提供了无边框窗口拖动的解决方案，但实际使用上会发现一些问题。比如我已经设置了窗口是无法改变尺寸的，但是在设置窗口拖动的区域内双击鼠标，窗口会最大化，再比如在拖动区域右键，会弹出系统级别的菜单选项，这些问题我查了相关资料也没找到屏蔽的办法，所以我就在考虑用 js 来手动实现窗口拖动的效果。
+{% note warning %}
+2018-08-25 更新：
+
+不建议在无边框窗口下使用下面的方法实现拖动效果，在特殊环境下，比如系统 DPI 不为 100% 时候，会导致窗口在拖动时，窗口的宽高会无限变大，建议还是使用官方提供的无边框窗口下的拖动方案。
+
+我的测试环境为 2560\*1440 的分辨率， DPI 为 125% 。
+
+关于这个问题，我也找到两个相关的 Issus ：
+- [Windows 10 move browser window will trigger "resize" event](https://github.com/electron/electron/issues/13086)
+- [Per monitor DPI awareness causes issues with window positioning and sizing](https://github.com/electron/electron/issues/10862)
+{% endnote %}
+
+虽然官方已经提供了无边框窗口拖动的解决方案，但实际使用上会发现一个问题，就是在拖动区域右键，会弹出系统级别的菜单选项，这问题我查了相关资料也没找到屏蔽的办法，所以我就在考虑用 js 来手动实现窗口拖动的效果。
 
 解决办法其实和网页上拖动元素一样，只是在获取坐标和设置坐标上，需要通过 electron 来获取窗口坐标和设置窗口坐标，实现代码如下：
 
