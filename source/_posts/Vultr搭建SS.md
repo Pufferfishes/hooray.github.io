@@ -179,3 +179,4 @@ firewall-cmd --reload
 - [搬瓦工shadowsocks多用户配置教程](http://calonye.com/22419.html)
 - [Vultr 一键搭建酸酸 Shad0ws0cks 图文教程（推荐）](https://www.vultrcn.com/6.html)
 - [CentOS7使用firewalld打开关闭防火墙与端口](http://www.cnblogs.com/moxiaoan/p/5683743.html)
+- [一键测试 Vultr 现有 15 个机房的 Ping 值延迟](https://www.vultrcn.com/9.html)
